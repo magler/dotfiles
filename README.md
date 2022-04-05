@@ -57,5 +57,5 @@ https://github.com/alacritty/alacritty#installation
 
 
 ## To Do:
-add color scheme for Alacritty: https://github.com/eendroroy/alacritty-theme
-Add dircolors: https://github.com/arcticicestudio/nord-dircolors,
+* Add color scheme for Alacritty: https://github.com/eendroroy/alacritty-theme
+* Add dircolors: https://github.com/arcticicestudio/nord-dircolors,
