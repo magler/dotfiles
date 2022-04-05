@@ -38,7 +38,13 @@ Invoke-WebRequest -Uri https://aka.ms/wslubuntu -OutFile Ubuntu.appx -UseBasicPa
 
 Add-AppxPackage .\app_name.appx
  ```
+### Setup GCM for github permissions
+For WSL I use the Debian/Ubuntu install:
 
+https://github.com/GitCredentialManager/git-credential-manager#ubuntudebian-distributions
+```
+git config --global credential.credentialStore cache
+```
 
 ## Install Alacritty
 https://github.com/alacritty/alacritty#installation
@@ -46,4 +52,4 @@ https://github.com/alacritty/alacritty#installation
 
 ## To Do:
 add color scheme for Alacritty: https://github.com/eendroroy/alacritty-theme
-Add dircolors: https://github.com/arcticicestudio/nord-dircolors
+Add dircolors: https://github.com/arcticicestudio/nord-dircolors,
