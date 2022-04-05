@@ -39,12 +39,18 @@ Invoke-WebRequest -Uri https://aka.ms/wslubuntu -OutFile Ubuntu.appx -UseBasicPa
 Add-AppxPackage .\app_name.appx
  ```
 ### Setup GCM for github permissions
+
 For WSL I use the Debian/Ubuntu install:
 
 https://github.com/GitCredentialManager/git-credential-manager#ubuntudebian-distributions
+
 ```
 git config --global credential.credentialStore cache
 ```
+Then run `git push` and paste in the generated token from the link below.
+
+https://github.com/settings/tokens
+
 
 ## Install Alacritty
 https://github.com/alacritty/alacritty#installation
