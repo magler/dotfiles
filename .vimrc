@@ -9,7 +9,6 @@
 "
 " Todo {{{
 
-" Todo: toggle NertTree with ",nt"
 " Todo: Sphinx syntax hilighting.
 " Todo: Change the map for edit vimrc so it opens in tab.
 " Todo: Fix Theme so it works in term
@@ -22,6 +21,7 @@
 
 " }}}
 " Done {{{
+" Todo: toggle NertTree with ",nt"
 " Done: change the lightline theme to match cruncbang.
 " Done: Add support for code completion.
 " }}}
