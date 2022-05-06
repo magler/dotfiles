@@ -66,7 +66,8 @@ https://github.com/alacritty/alacritty#installation
 * Add color scheme for Alacritty: https://github.com/eendroroy/alacritty-theme
 * Add dircolors: https://github.com/arcticicestudio/nord-dircolors
 * Add instructions for installing pyenv: https://github.com/pyenv/pyenv#getting-pyenv
-* - Use ~/.profile
+  * Use ~/.profile
 * Add instructions for installing Docker: https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04
+* Add instructions for updating the docker subnet pool: https://support.getjoan.com/knowledge/How-to-change-the-Docker-default-subnet-IP-address
 * Add instructions for WSL network config: https://www.jorgebernhardt.com/how-to-disable-ipv6-network-adapter-using-powershell/
 * Add instructions for backing up wsl distro.
