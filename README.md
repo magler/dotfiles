@@ -42,6 +42,11 @@ Add-AppxPackage .\app_name.appx
 
 For WSL I use the Debian/Ubuntu install:
 
+Releases
+```
+$ curl -v "https://api.github.com/repos/GitCredentialManager/git-credential-manager/releases/latest"
+```
+
 https://github.com/GitCredentialManager/git-credential-manager#ubuntudebian-distributions
 
 ```
