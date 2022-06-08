@@ -38,9 +38,54 @@ Invoke-WebRequest -Uri https://aka.ms/wslubuntu -OutFile Ubuntu.appx -UseBasicPa
 
 Add-AppxPackage .\app_name.appx
  ```
+
+### configure WSL
+Need to make sure that docker is started when wsl starts.
+`sudo vim /etc/wsl.conf`
+
+```
+# Set a command to run when a new WSL instance launches. This example starts the Docker container service.
+[boot]
+command = service docker start
+```
+
+#### Backing up WSL
+Once WSL is installed and working, you will need to make sure that you are regularly backing up the distro so you can restore if there is ever an issue.
+
+DO THIS OFTEN!
+
+```
+# The format for the command looks somthing lie this
+wsl --export <distro_name> ./wsl_<date>_<distro_name>.tar
+
+# For example, this is the format that I would use to backup my WSL distro.
+wsl --export Ubuntu-20.04 ./wsl_05102022_Ubuntu-20.04.tar
+```
+At some point I would like to automate this, but for now I have a oneliner that I run manually.
+
+#### Restoring WSL
+Importing is as easy at exporting.
+
+```
+# command format is as follows.
+wsl --import <exported_distro> <install_location> .\wsl_<date>_<distro_name>.tar
+
+# here is an example of a restore that I ran
+wsl --import Ubuntu-20.04_05062022 c:\wsl_Ubuntu-2004_05062022 .\wsl_05062022_Ubuntu-20.04.tar
+```
+
+# Bitbucket auth
+
+For setting up auth to Bitbucket I use the instructions from the Bitbucket Docs.
+
+https://support.atlassian.com/bitbucket-cloud/docs/set-up-an-ssh-key/
+
+Skip Step 2, Setting up the key access to the repo should be done local, using the instructions below.
+https://stackoverflow.com/a/41947805
+
 ### Setup GCM for github permissions
 
-For WSL I use the Debian/Ubuntu install:
+If I need to auth anything on github, For WSL I use the Debian/Ubuntu install:
 
 Releases
 ```
@@ -56,9 +101,50 @@ Then run `git push` and paste in the generated token from the link below.
 
 https://github.com/settings/tokens
 
+### Git config settings
+
+```
+# Set Vim as the default editor.
+git config --global core.editor "vim"
+```
+
+
+## Docker install and config.
+### Docker install
+
+```
+sudo apt update
+
+sudo apt install apt-transport-https ca-certificates curl software-properties-common
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+# Add the Docker repository
+
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+
+apt-cache policy docker-ce
+
+sudo apt install docker-ce
+
+sudo service docker start
+```
+
+
+### Docker config
+In some networks there are conflicts, so I configure my own ip range for local dev.
+
+```
+sudo cat > /etc/docker/daemon.json <<EOL
+{
+  "bip": "10.201.1.1/24"
+}
+sudo service docker restart
+```
 
 ## Install Alacritty
 https://github.com/alacritty/alacritty#installation
+
 
 
 ## To Do:
@@ -67,7 +153,9 @@ https://github.com/alacritty/alacritty#installation
 * Add dircolors: https://github.com/arcticicestudio/nord-dircolors
 * Add instructions for installing pyenv: https://github.com/pyenv/pyenv#getting-pyenv
   * Use ~/.profile
+  * Install Python: https://realpython.com/intro-to-pyenv/
 * Add instructions for installing Docker: https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04
 * Add instructions for updating the docker subnet pool: https://support.getjoan.com/knowledge/How-to-change-the-Docker-default-subnet-IP-address
+* Add instructions for installing docker-compose: https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04
 * Add instructions for WSL network config: https://www.jorgebernhardt.com/how-to-disable-ipv6-network-adapter-using-powershell/
 * Add instructions for backing up wsl distro.

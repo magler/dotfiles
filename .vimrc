@@ -59,63 +59,55 @@ nmap <silent> <leader>id :put =strftime(\"%c\")<CR>
 inoremap jj <Esc>
 
 " }}}
-" Vundles Plugins {{{
+" Plugins {{{
 "Start {{{
 "set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" set rtp+=~/.vim/bundle/Vundle.vim
+call plug#begin()
 
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
 
 " Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
 " }}}
 
 " autocomplete
-Plugin 'davidhalter/jedi-vim'
-Plugin 'ervandew/supertab'
-"Bundle 'Valloric/YouCompleteMe'
+Plug 'davidhalter/jedi-vim'
+"Plug 'ervandew/supertab'
+Plug 'ycm-core/YouCompleteMe'
 
 " Syntax
-" Plugin 'scrooloose/syntastic'
-" Plugin 'hdima/python-syntax'
-Plugin 'JazzCore/vim-python-syntax'
-Plugin 'nvie/vim-flake8'
+Plug 'airblade/vim-gitgutter'
+Plug 'scrooloose/syntastic'
+Plug 'hdima/python-syntax'
+" Plugin 'JazzCore/vim-python-syntax'
+" Plugin 'nvie/vim-flake8'
 
 " Devicons
-Plugin 'ryanoasis/vim-devicons'
+" Plugin 'ryanoasis/vim-devicons'
 
 " Directory tree/File Manager
-Plugin 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 " Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plugin 'ctrlpvim/ctrlp.vim'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'ctrlpvim/ctrlp.vim'
 
 " Status line
-Plugin 'itchyny/lightline.vim'
+Plug 'itchyny/lightline.vim'
 
 " Color scheme
-Plugin 'nightsense/vim-crunchbang'
-" Plugin 'AlessandroYorba/Arcadia'
-Plugin 'tomasr/molokai'
-Plugin 'crusoexia/vim-monokai'
- Plugin 'nightsense/carbonized'
-" Plugin 'ciaranm/inkpot'
-Plugin 'hzchirs/vim-material'
+Plug 'sonph/onehalf', { 'rtp': 'vim' }
 
 "Visual indentation
-Plugin 'Yggdroot/indentLine'
+Plug 'Yggdroot/indentLine'
 
 " Rainbow parentheses
-Plugin 'luochen1990/rainbow'
+Plug 'luochen1990/rainbow'
 
 " End {{{
 
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
+call plug#end()            " required
 filetype plugin indent on    " required
 "}}}
 " }}}
@@ -184,6 +176,8 @@ let g:rainbow_active = 1
 let g:jedi#completions_enabled = 0
 "
 "   }}}
+let g:gitgutter_git_executable = '/usr/bin/git'
+set updatetime=100
 "}}}
 " Search {{{
 " real regex search
@@ -227,16 +221,19 @@ set guifont=Knack\ Nerd\ Font:h11
 "set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete\:h13
 let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
 
-" let g:monokai_term_italic = 1
-" let g:monokai_gui_italic = 1
 
 if has('gui_running')
-  set background=dark
-  colorscheme crunchbang
-  colorscheme carbonized-dark
+  colorscheme onehalfdark 
 else
-  set background=dark
-  colorscheme carbonized-dark
+ " set background=dark
+  colorscheme onehalfdark
+endif
+
+" Settings for onehalf Theme
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
 endif
 
 "statusline
