@@ -125,6 +125,9 @@ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubun
 
 apt-cache policy docker-ce
 
+# Set the user permissions:
+sudo usermod -aG docker ${USER}
+
 sudo apt install docker-ce
 
 sudo service docker start
@@ -136,8 +139,12 @@ In some networks there are conflicts, so I configure my own ip range for local d
 
 ```
 sudo cat > /etc/docker/daemon.json <<EOL
+need to add this to /etc/docker/daemon.json:
 {
-  "bip": "10.201.1.1/24"
+  "default-address-pools":
+  [
+    {"base":"10.0.0.0/16","size":24}
+  ]
 }
 sudo service docker restart
 ```
