@@ -101,6 +101,12 @@ Then run `git push` and paste in the generated token from the link below.
 
 https://github.com/settings/tokens
 
+For windows you need to use the helper store instead.
+
+```
+git config --global credential.helper store
+```
+
 ### Git config settings
 
 ```
