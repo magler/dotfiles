@@ -149,9 +149,17 @@ need to add this to /etc/docker/daemon.json:
 sudo service docker restart
 ```
 
-## Install Alacritty
-https://github.com/alacritty/alacritty#installation
+## Git 
+In order to use Vim-plug in GVim, Need to add git to the path.
+install git https://git-scm.com/download/win
 
+Then to avoid the error:
+> [vim-plug] `git` executable not found.
+1. Open Powershell in Admin mode and run the following command to add git to the path
+```
+setx /M path "%path%;C:\Program Files\Git\bin;C:\Program Files\Git\cmd"
+```
+This will allow you to run git from the command line in windows.
 
 
 ## To Do:
