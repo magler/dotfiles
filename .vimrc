@@ -50,6 +50,7 @@ nmap <silent> <leader>ev :vsplit $MYVIMRC<CR>
 nmap <silent> <leader>ez :vsplit ~/.zshrc<CR>
 " ,ei open notes in vsplit
 nmap <silent> <leader>ei :vsplit ~/notes.txt<CR>
+" Insert a timestamp
 nmap <silent> <leader>id :put =strftime(\"%c\")<CR>
 
 " Quickly get out of insert mode
@@ -61,30 +62,35 @@ inoremap jj <Esc>
 " }}}
 " Plugins {{{
 "Start {{{
-"set the runtime path to include Vundle and initialize
-" set rtp+=~/.vim/bundle/Vundle.vim
+" https://github.com/junegunn/vim-plug
 call plug#begin()
+" The default plugin directory will be as follows:
+"   - Vim (Linux/macOS): '~/.vim/plugged'
+"   - Vim (Windows): '~/vimfiles/plugged'
+"   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged'
+" You can specify a custom plugin directory by passing it as the argument
+"   - e.g. `call plug#begin('~/.vim/plugged')`
+"   - Avoid using standard Vim directory names like 'plugin'
 
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+" Make sure you use single quotes
 
+" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align 
 " Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
 " }}}
 
 " autocomplete
 Plug 'davidhalter/jedi-vim'
-"Plug 'ervandew/supertab'
-Plug 'ycm-core/YouCompleteMe'
+Plug 'ervandew/supertab'
+"Bundle 'Valloric/YouCompleteMe'
 
 " Syntax
-Plug 'airblade/vim-gitgutter'
-Plug 'scrooloose/syntastic'
-Plug 'hdima/python-syntax'
-" Plugin 'JazzCore/vim-python-syntax'
-" Plugin 'nvie/vim-flake8'
+" Plugin 'scrooloose/syntastic'
+" Plugin 'hdima/python-syntax'
+Plug 'JazzCore/vim-python-syntax'
+Plug 'nvie/vim-flake8'
 
 " Devicons
-" Plugin 'ryanoasis/vim-devicons'
+Plug 'ryanoasis/vim-devicons'
 
 " Directory tree/File Manager
 Plug 'scrooloose/nerdtree'
@@ -96,7 +102,13 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'itchyny/lightline.vim'
 
 " Color scheme
-Plug 'sonph/onehalf', { 'rtp': 'vim' }
+Plug 'nightsense/vim-crunchbang'
+" Plugin 'AlessandroYorba/Arcadia'
+Plug 'tomasr/molokai'
+Plug 'crusoexia/vim-monokai'
+Plug 'nightsense/carbonized'
+" Plugin 'ciaranm/inkpot'
+Plug 'hzchirs/vim-material'
 
 "Visual indentation
 Plug 'Yggdroot/indentLine'
@@ -107,8 +119,10 @@ Plug 'luochen1990/rainbow'
 " End {{{
 
 " All of your Plugins must be added before the following line
-call plug#end()            " required
-filetype plugin indent on    " required
+call plug#end()
+" You can revert the settings after the call like so:
+"   filetype indent off   " Disable file-type-specific indentation
+"   syntax off            " Disable syntax highlighting
 "}}}
 " }}}
 " Plugin Settings {{{
@@ -176,8 +190,6 @@ let g:rainbow_active = 1
 let g:jedi#completions_enabled = 0
 "
 "   }}}
-let g:gitgutter_git_executable = '/usr/bin/git'
-set updatetime=100
 "}}}
 " Search {{{
 " real regex search
@@ -216,25 +228,40 @@ set t_Co=256
 
 " Font
 " https://github.com/ryanoasis/vim-devicons
-" Knack Nerd Font
-set guifont=Knack\ Nerd\ Font:h11
-"set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete\:h13
 let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
 
 
 if has('gui_running')
-  colorscheme onehalfdark 
+  " Disable Gvim menu stuff.
+  set guioptions-=m  "menu bar
+  set guioptions-=T  "toolbar
+  set guioptions-=r  "scrollbar 
+
+  " Knack Nerd Font
+  set guifont=Hack\ Nerd\ Font\ Mono:h11:cANSI
+  set background=dark
+  "colorscheme crunchbang
+  colorscheme carbonized-dark
 else
- " set background=dark
-  colorscheme onehalfdark
+  set guifont=Hack\ Nerd\ Font:h15:cANSI
+  set background=dark
+  colorscheme carbonized-dark
 endif
 
-" Settings for onehalf Theme
-if exists('+termguicolors')
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-  set termguicolors
-endif
+" function that will toggle the menus and stuff in gui mode from SO:
+" https://stackoverflow.com/a/13525844
+function! ToggleGUICruft()
+  if &guioptions=='i'
+    exec('set guioptions=imTrL')
+  else
+    exec('set guioptions=i')
+  endif
+endfunction
+
+map <F11> <Esc>:call ToggleGUICruft()<cr>
+
+" by default, hide gui menus
+set guioptions=i
 
 "statusline
 set laststatus=2
