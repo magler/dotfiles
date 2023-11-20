@@ -9,6 +9,7 @@
 "
 " Todo {{{
 
+" TODO: Remove Folds
 " Todo: Sphinx syntax hilighting.
 " Todo: Change the map for edit vimrc so it opens in tab.
 " Todo: Fix Theme so it works in term
@@ -17,7 +18,6 @@
 " Todo: Add https://github.com/Xuyuanp/nerdtree-git-plugin
 " Todo: toggle spell check https://gist.github.com/brandonpittman/9d15134057c7267a88a8
 " ToDo: user devicons in lightline
-" Todo: activate fold when you attempt to move past 0 on the left.
 
 " }}}
 " Done {{{
