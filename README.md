@@ -169,6 +169,7 @@ This will allow you to run git from the command line in windows.
 
 
 ## To Do:
+* Add windows bat file https://stackoverflow.com/a/21040825
 * Add in automation for some configuration options.
 * Add color scheme for Alacritty: https://github.com/eendroroy/alacritty-theme
 * Add dircolors: https://github.com/arcticicestudio/nord-dircolors
