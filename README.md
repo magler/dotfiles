@@ -156,6 +156,7 @@ sudo service docker restart
 ```
 
 ## Git 
+### Add Git to path
 In order to use Vim-plug in GVim, Need to add git to the path.
 install git https://git-scm.com/download/win
 
@@ -163,11 +164,18 @@ Then to avoid the error:
 > [vim-plug] `git` executable not found.
 1. Open Powershell in Admin mode and run the following command to add git to the path
 ```
+$newpath = 'C:\Program Files\Git\bin;C:\Program Files\Git\cmd'
+$oldPath = [Environment]::GetEnvironmentVariable('PATH', 'Machine');
+[Environment]::SetEnvironmentVariable('PATH', "$newPath;$oldPath",'Machine');
+
+# DEPRECATED - don't use this:
 setx /M path "%path%;C:\Program Files\Git\bin;C:\Program Files\Git\cmd"
 ```
 This will allow you to run git from the command line in windows.
 
+```
 
+```
 ## To Do:
 * Add windows bat file https://stackoverflow.com/a/21040825
 * Add in automation for some configuration options.
